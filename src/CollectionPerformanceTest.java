@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.concurrent.TimeUnit;
 
 public class CollectionPerformanceTest {
 
@@ -45,5 +46,18 @@ public class CollectionPerformanceTest {
             linkedList.remove(i);
         }
         long linkedListDeleteTime = System.nanoTime() - startTime;
+
+        long arrayListAddTimeMillis = TimeUnit.NANOSECONDS.toMillis(arrayListAddTime);
+        long linkedListAddTimeMillis = TimeUnit.NANOSECONDS.toMillis(linkedListAddTime);
+        long arrayListGetTimeMillis = TimeUnit.NANOSECONDS.toMillis(arrayListGetTime);
+        long linkedListGetTimeMillis = TimeUnit.NANOSECONDS.toMillis(linkedListGetTime);
+        long arrayListDeleteTimeMillis = TimeUnit.NANOSECONDS.toMillis(arrayListDeleteTime);
+        long linkedListDeleteTimeMillis = TimeUnit.NANOSECONDS.toMillis(linkedListDeleteTime);
+
+        System.out.println("Operation\t| Operation Count\t| ArrayList\t| LinkedList");
+        System.out.println("------------------------------------------------");
+        System.out.println(String.format("Add\t\t\t| %14d\t| %11d ms\t| %10d ms", numOperationsAdd, arrayListAddTimeMillis, linkedListAddTimeMillis));
+        System.out.println(String.format("Get\t\t\t| %14d\t| %11d ms\t| %10d ms", numOperationsGet, arrayListGetTimeMillis, linkedListGetTimeMillis));
+        System.out.println(String.format("Delete\t\t| %14d\t| %11d ms\t| %10d ms", numOperationsAdd, arrayListDeleteTimeMillis, linkedListDeleteTimeMillis));
     }
 }
